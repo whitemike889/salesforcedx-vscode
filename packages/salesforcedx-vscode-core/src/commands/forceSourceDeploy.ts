@@ -26,7 +26,6 @@ import {
   ManifestOrSourcePathGatherer,
   SelectedPath
 } from './forceSourceRetrieve';
-
 vscode.workspace.onDidChangeTextDocument(e => {
   if (ForceSourceDeployExecutor.errorCollection.has(e.document.uri)) {
     ForceSourceDeployExecutor.errorCollection.delete(e.document.uri);
@@ -100,6 +99,14 @@ export class ForceSourceDeployExecutor extends SfdxCommandletExecutor<
 const workspaceChecker = new SfdxWorkspaceChecker();
 
 export async function forceSourceDeploy(explorerPath: any) {
+  if (!explorerPath && vscode.window.activeTextEditor) {
+    const activeEditor = vscode.window.activeTextEditor;
+    if (activeEditor.document.uri.scheme !== 'file') {
+      // throw new Error('There is no open file to deploy');
+    }
+
+    explorerPath = activeEditor.document.uri;
+  }
   const commandlet = new SfdxCommandlet(
     workspaceChecker,
     new ManifestOrSourcePathGatherer(explorerPath),
