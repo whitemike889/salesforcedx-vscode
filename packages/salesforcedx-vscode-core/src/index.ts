@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, salesforce.com, inc.
+ * Copyright (c) 2019, salesforce.com, inc.
  * All rights reserved.
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
@@ -73,7 +73,12 @@ import { setDefaultOrg, showDefaultOrg } from './orgPicker';
 import { registerPushOrDeployOnSave, sfdxCoreSettings } from './settings';
 import { taskViewService } from './statuses';
 import { telemetryService } from './telemetry';
-import { getRootWorkspacePath, hasRootWorkspace, isCLIInstalled, showCLINotInstalledMessage } from './util';
+import {
+  getRootWorkspacePath,
+  hasRootWorkspace,
+  isCLIInstalled,
+  showCLINotInstalledMessage
+} from './util';
 
 function registerCommands(
   extensionContext: vscode.ExtensionContext
@@ -376,7 +381,6 @@ function registerCommands(
     forceConfigSetCmd
   );
 }
-
 export async function activate(context: vscode.ExtensionContext) {
   const extensionHRStart = process.hrtime();
   // Telemetry
@@ -387,9 +391,16 @@ export async function activate(context: vscode.ExtensionContext) {
 
   // Context
   let sfdxProjectOpened = false;
-  if (hasRootWorkspace()) {
-    const files = await vscode.workspace.findFiles('**/sfdx-project.json');
-    sfdxProjectOpened = files && files.length > 0;
+  // if (hasRootWorkspace()) {
+  //   const files = await vscode.workspace.findFiles('**/sfdx-project.json');
+  //   sfdxProjectOpened = files && files.length > 0;
+
+  if (true) {
+    // @todo Theia hasRootWorkspace() === false due to theia's eager plugin activation, the workspace is not yet populated.
+    const findFiles1 = await vscode.workspace.findFiles('sfdx-project.json'); // @todo Theia - this one works in theia
+    const findFiles2 = await vscode.workspace.findFiles('**/sfdx-project.json'); // @todo Theia - this one works in vscode
+    const files = [...findFiles1, ...findFiles2];
+    sfdxProjectOpened = files.length > 0;
   }
 
   let replayDebuggerExtensionInstalled = false;

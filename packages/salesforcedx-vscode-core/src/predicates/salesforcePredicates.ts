@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, salesforce.com, inc.
+ * Copyright (c) 2019, salesforce.com, inc.
  * All rights reserved.
  * Licensed under the BSD 3-Clause license.
  * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
@@ -18,20 +18,25 @@ import { getRootWorkspacePath, hasRootWorkspace } from '../util';
 
 export class IsSfdxProjectOpened implements Predicate<typeof workspace> {
   public apply(item: typeof workspace): PredicateResponse {
-    if (!hasRootWorkspace()) {
-      return PredicateResponse.of(
-        false,
-        nls.localize('predicates_no_folder_opened_text')
+    if (hasRootWorkspace(item)) {
+      const uri = path.join(
+        item.workspaceFolders![0].uri.path,
+        SFDX_PROJECT_FILE
       );
-    } else if (
-      !fs.existsSync(path.join(getRootWorkspacePath(), SFDX_PROJECT_FILE))
-    ) {
+      const exists = fs.existsSync(uri);
+      if (!exists) {
+        return PredicateResponse.of(
+          false,
+          nls.localize('predicates_no_sfdx_project_found_text')
+        );
+      } else {
+        return PredicateResponse.true();
+      }
+    } else {
       return PredicateResponse.of(
         false,
         nls.localize('predicates_no_sfdx_project_found_text')
       );
-    } else {
-      return PredicateResponse.true();
     }
   }
 }
