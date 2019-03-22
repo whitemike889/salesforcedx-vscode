@@ -9,7 +9,7 @@
     "vscode": "^1.26.0"
   },
   "dependencies": {
-    "@salesforce/salesforcedx-utils-vscode": "45.7.0",
+    "@salesforce/salesforcedx-utils-vscode": "file:../salesforcedx-utils-vscode",
     "cross-spawn": "6.0.5",
     "path-exists": "3.0.0",
     "request-light": "0.2.1",

@@ -28,7 +28,7 @@
     "vscode-extension-telemetry": "0.0.17"
   },
   "devDependencies": {
-    "@salesforce/salesforcedx-utils-vscode": "45.7.0",
+    "@salesforce/salesforcedx-utils-vscode": "file:../salesforcedx-utils-vscode",
     "@types/chai": "^4.0.0",
     "@types/mocha": "2.2.38",
     "@types/node": "8.9.3",

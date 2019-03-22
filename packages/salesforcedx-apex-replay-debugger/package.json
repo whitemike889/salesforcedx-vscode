@@ -13,7 +13,7 @@
     "Debuggers"
   ],
   "dependencies": {
-    "@salesforce/salesforcedx-utils-vscode": "45.7.0",
+    "@salesforce/salesforcedx-utils-vscode": "file:../salesforcedx-utils-vscode",
     "vscode-debugadapter": "1.28.0",
     "vscode-debugprotocol": "1.28.0",
     "vscode-uri": "1.0.1"

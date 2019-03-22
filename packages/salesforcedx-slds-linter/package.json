@@ -49,7 +49,7 @@
     ]
   },
   "dependencies": {
-    "@salesforce/salesforcedx-utils-vscode": "45.7.0",
+    "@salesforce/salesforcedx-utils-vscode": "file:../salesforcedx-utils-vscode",
     "vscode-languageclient": "3.5.1",
     "vscode-languageserver": "3.5.1"
   }

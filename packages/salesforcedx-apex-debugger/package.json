@@ -12,7 +12,7 @@
     "Debuggers"
   ],
   "dependencies": {
-    "@salesforce/salesforcedx-utils-vscode": "45.7.0",
+    "@salesforce/salesforcedx-utils-vscode": "file:../salesforcedx-utils-vscode",
     "async-lock": "1.0.0",
     "faye": "1.1.2",
     "request-light": "0.2.1",

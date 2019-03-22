@@ -27,7 +27,7 @@
   "dependencies": {
     "@salesforce/core": "1.1.1",
     "@salesforce/salesforcedx-sobjects-faux-generator": "45.7.0",
-    "@salesforce/salesforcedx-utils-vscode": "45.7.0",
+    "@salesforce/salesforcedx-utils-vscode": "file:../salesforcedx-utils-vscode",
     "adm-zip": "0.4.13",
     "applicationinsights": "1.0.6",
     "glob": "^7.1.2",
