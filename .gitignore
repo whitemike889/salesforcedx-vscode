@@ -93,7 +93,7 @@ jspm_packages/
 packages/system-tests/project_*
 
 # Node 8 files (actually causes issues with the symlinking that lerna does, so ignore)
-package-lock.json
+# package-lock.json
 
 # External extension dependencies
 packages/dbaeumer*
